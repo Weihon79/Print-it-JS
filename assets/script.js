@@ -36,14 +36,15 @@ function updateDots(index) {
 
 function updateCarousel(index, direction) {
 	if(currentIndex === -1 && direction === "left") {
-		currentIndex = slides.length -1;
+		currentIndex = 3;
 	} else if (currentIndex === slides.length && direction === "right") {
 		currentIndex = 0;
-	}
+	} else {
+        currentIndex = index;
+    }
 
 	const imagePath = `assets/images/slideshow/${slides[currentIndex].image}`;
 	bannerImg.src = imagePath;
-	bannerImg.alt = `Slide ${currentIndex + 1}`;
 
 	const tagLine = slides[currentIndex].tagLine;
 	document.querySelector("p").innerHTML = tagLine;
@@ -51,13 +52,13 @@ function updateCarousel(index, direction) {
 	console.log(`Clic sur la flèche ${direction}`);
 }
 
-arrowLeft.addEventListener("click", function () {
+arrowLeft.addEventListener("click", () => {
 	currentIndex = (currentIndex -1);
 	updateCarousel(currentIndex, "left");
 	updateDots(currentIndex);
 });
 
-arrowRight.addEventListener("click", function () {
+arrowRight.addEventListener("click", () => {
 	currentIndex = (currentIndex +1);
 	updateCarousel(currentIndex, "right");
 	updateDots(currentIndex);
