@@ -20,8 +20,9 @@ const slides = [
 const bannerImg = document.querySelector('.banner-img');
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
+const arrow = document.querySelector('.arrow');
 const dots = document.querySelectorAll('.dot');
-
+console.log(dots)
 let currentIndex = 0;
 
 function updateDots(index) {
@@ -34,10 +35,10 @@ function updateDots(index) {
 	});
 }
 
-function updateCarousel(index, direction) {
-	if(currentIndex === -1 && direction === "left") {
+function updateCarousel(index) {
+	if(currentIndex === -1) {
 		currentIndex = 3;
-	} else if (currentIndex === slides.length && direction === "right") {
+	} else if (currentIndex === slides.length) {
 		currentIndex = 0;
 	} else {
         currentIndex = index;
@@ -49,20 +50,16 @@ function updateCarousel(index, direction) {
 	const tagLine = slides[currentIndex].tagLine;
 	document.querySelector("p").innerHTML = tagLine;
 
-	console.log(`Clic sur la flèche ${direction}`);
 }
 
 arrowLeft.addEventListener("click", () => {
 	currentIndex = (currentIndex -1);
-	updateCarousel(currentIndex, "left");
+	updateCarousel(currentIndex);
 	updateDots(currentIndex);
 });
 
 arrowRight.addEventListener("click", () => {
 	currentIndex = (currentIndex +1);
-	updateCarousel(currentIndex, "right");
+	updateCarousel(currentIndex);
 	updateDots(currentIndex);
 });
-
-
-
