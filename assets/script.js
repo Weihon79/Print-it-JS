@@ -63,3 +63,5 @@ arrowRight.addEventListener("click", () => {
 	updateCarousel(currentIndex);
 	updateDots(currentIndex);
 });
+
+/**FIN */
