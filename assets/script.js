@@ -53,13 +53,13 @@ function updateCarousel(index) {
 }
 
 arrowLeft.addEventListener("click", () => {
-	currentIndex = (currentIndex -1);
+	currentIndex = currentIndex - 1;
 	updateCarousel(currentIndex, "left");
 	updateDots(currentIndex);
 });
 
 arrowRight.addEventListener("click", () => {
-	currentIndex = (currentIndex +1);
+	currentIndex = currentIndex + 1;
 	updateCarousel(currentIndex, "right");
 	updateDots(currentIndex);
 });
