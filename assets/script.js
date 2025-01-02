@@ -20,12 +20,22 @@ const slides = [
 const bannerImg = document.querySelector('.banner-img');
 const arrowLeft = document.querySelector('.arrow_left');
 const arrowRight = document.querySelector('.arrow_right');
-const arrow = document.querySelector('.arrow');
-const dots = document.querySelectorAll('.dot');
-console.log(dots)
+const dotsContainer = document.querySelector('.dots');
+
 let currentIndex = 0;
+//Creer dynamiquement les divs avec la classe dot en fonction de la taille du tableau,
+//Si le tableau a 8 image je creer 8 divs
+
+function createDots() {
+	slides.forEach(() =>{
+		const dot = document.createElement('div');
+		dot.classList.add('dot');
+		dotsContainer.appendChild(dot);
+	});
+}
 
 function updateDots(index) {
+	const dots = document.querySelectorAll('.dot');
 	dots.forEach((dot, i) => {
 		if (i === index) {
 			dot.classList.add("dot_selected");
@@ -36,9 +46,9 @@ function updateDots(index) {
 }
 
 function updateCarousel(index) {
-	if(currentIndex === -1) {
-		currentIndex = 3;
-	} else if (currentIndex === slides.length) {
+	if (index < 0) {
+		currentIndex = slides.length -1;
+	} else if (index >= slides.length) {
 		currentIndex = 0;
 	} else {
         currentIndex = index;
@@ -50,19 +60,20 @@ function updateCarousel(index) {
 	const tagLine = slides[currentIndex].tagLine;
 	document.querySelector("p").innerHTML = tagLine;
 
+	updateDots(currentIndex);
 }
 
 arrowLeft.addEventListener("click", () => {
-	currentIndex = currentIndex - 1;
-	updateCarousel(currentIndex, "left");
-	updateDots(currentIndex);
+	updateCarousel(currentIndex -1);
 });
 
 arrowRight.addEventListener("click", () => {
-	currentIndex = currentIndex + 1;
-	updateCarousel(currentIndex, "right");
-	updateDots(currentIndex);
+	updateCarousel(currentIndex +1);
 });
+
+createDots();
+updateDots(0);
+
 
 
 
